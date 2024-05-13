@@ -1,0 +1,24 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <p>Qual é a alternativa mais sustentável para o descarte de resíduos eletrônicos?</p>
+
+  <div class="questions">
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Jogá-los no lixo comum</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Doá-los para instituições de caridade</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Reciclá-los em instalações apropriadas</span>
+    </label>
+  </div>
+
+  <a href="{% url "question_4" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+{% endblock question %}
+
+

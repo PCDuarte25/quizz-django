@@ -1,0 +1,21 @@
+.initial-game-screen {
+  display: flex;
+  background-image: url('../sprites/background8bit864x864.png');
+  height: 864px;
+  width: 864px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-items: flex-end;
+}
+
+.game-logo {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-shadow: rgba(8, 87, 19, 0.9) 0px 0px 9px;
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 160px;
+}
+

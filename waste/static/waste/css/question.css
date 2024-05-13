@@ -1,0 +1,134 @@
+.questions-background {
+  display: flex;
+  background-image: url('../sprites/background8bit864x864.png');
+  height: 864px;
+  width: 864px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 70%;
+}
+
+.nes-container {
+  background-color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+}
+
+.questions-drag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nes-btn.is-success {
+  width: 100%;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.progress-title {
+  position: absolute;
+  margin-top: 15px;
+}
+
+.battery {
+  background-image: url('../sprites/battery80x80.png');
+  display: flex;
+  height: 80px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.apple {
+  background-image: url('../sprites/apple-8bit80x80.png');
+  display: flex;
+  height: 80px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.soda {
+  background-image: url('../sprites/soda-8bit80x80.png');
+  display: flex;
+  height: 80px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.battery-bin {
+  background-image: url('../sprites/battery-bin.png');
+  display: flex;
+  height: 99px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.organic-bin {
+  background-image: url('../sprites/organic-bin.png');
+  display: flex;
+  height: 99px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.metal-bin {
+  background-image: url('../sprites/metal-bin.png');
+  display: flex;
+  height: 99px;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}

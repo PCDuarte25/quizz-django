@@ -1,0 +1,24 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <p>Arraste o tipo de resíduo sólido para o destino correto de descarte</p>
+
+  <div class="questions">
+    <div class="questions-drag">
+      <div class="options">
+        <div class="battery"></div>
+        <div class="apple"></div>
+        <div class="soda"></div>
+      </div>
+      <div class="choices">
+        <div class="battery-bin"></div>
+        <div class="metal-bin"></div>
+        <div class="organic-bin"></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="{% url "dashboard" %}"><button type="button" class="nes-btn is-success">Finalizar</button></a>
+{% endblock question %}
+
+

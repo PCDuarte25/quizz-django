@@ -1,0 +1,24 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <p>Qual das seguintes opções é considerada uma prática de redução de resíduos sólidos?</p>
+
+  <div class="questions">
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Descartar todos os materiais não utilizados</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Comprar produtos a granel em vez de embalagens individuais</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Ignorar a reciclagem e disposição adequada dos resíduos</span>
+    </label>
+  </div>
+
+  <a href="{% url "question_5" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+{% endblock question %}
+
+

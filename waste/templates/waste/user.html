@@ -1,0 +1,27 @@
+{% extends "waste/base.html" %}
+
+{% load static %}
+
+{% block references %}
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/user.css" %}" />
+{% endblock references %}
+
+{% block content %}
+  <div class="user-container">
+    <div class="nes-container is-centered is-rounded with-title">
+      <div class="nes-field">
+        <label for="name_field">Nome</label>
+        <input type="text" id="name_field" class="nes-input">
+      </div>
+      <a class="play-game" href="{% url "question_1" %}"><button type="button" class="nes-btn is-success">aceitar</button></a>
+    </div>
+
+    <div class="back-button">
+      <a class="play-game" href="{% url "dashboard" %}"><button type="button" class="nes-btn is-warning">voltar</button></a>
+    </div>
+  </div>
+
+{% endblock content %}
+
+
+

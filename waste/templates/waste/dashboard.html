@@ -1,0 +1,21 @@
+{% extends "waste/base.html" %}
+
+{% load static %}
+
+{% block references %}
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/dashboard.css" %}" />
+{% endblock references %}
+
+{% block content %}
+  <div class='menu-container'>
+    <div class="game-menu">
+      <a class="play-game" href="{% url "user" %}"><button type="button" class="nes-btn is-success">Jogar</button></a>
+      <a class="play-game" href="{% url "user" %}"><button type="button" class="nes-btn is-primary">Ranking</button></a>
+    </div>
+
+    <div class="game-footer">
+      <span class="nes-text is-white">um jogo feito pela <a href="https://github.com/PCDuarte25/earth-invaders" target="_blank">hype
+        tech</a></span>
+    </div>
+  </div>
+{% endblock content %}

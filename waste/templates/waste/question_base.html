@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizz !</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/a-autobus-omnibus" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/press-start" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/question.css" %}" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+</head>
+
+<body>
+  <div class="questions-background">
+    <div class="questions-container">
+      {% include "waste/progress_bar.html" %}
+
+      <div class="nes-container is-rounded">
+        {% block question %}{% endblock question %}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

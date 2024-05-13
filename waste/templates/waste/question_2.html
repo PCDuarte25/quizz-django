@@ -1,0 +1,24 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <p>Qual é o principal objetivo da coleta seletiva de resíduos sólidos?</p>
+
+  <div class="questions">
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Misturar todos os tipos de resíduos juntos para facilitar a disposição</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Separar materiais recicláveis dos não recicláveis</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer">
+      <span>Descartar todos os resíduos diretamente em aterros sanitários</span>
+    </label>
+  </div>
+
+  <a href="{% url "question_3" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+{% endblock question %}
+
+

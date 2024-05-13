@@ -1,0 +1,47 @@
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 450px;
+  justify-content: space-between;
+}
+
+.game-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 25%;
+}
+
+.nes-btn {
+  width: 100%;
+}
+
+.game-footer {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.is-white {
+  color: white;
+}
+
+.nes-text {
+  font-size: 12px;
+}
+
+.game-footer a {
+  text-decoration: none;
+  color: #108de0;
+}
+
+.game-footer a:hover {
+  border-bottom: 2px dotted rgba(241, 94, 9, 0.9) ;
+}
+
+.game-footer a:visited {
+  color: #108de0;
+}
