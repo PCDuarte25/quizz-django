@@ -3,22 +3,21 @@
 {% block question %}
   <p>Qual é a principal forma de gerenciamento de resíduos sólidos urbanos?</p>
 
-  <div class="questions">
+  <form id="form" class="questions" method="post" action="{% url "question_1" person.id %}">
+    {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1">
       <span>Incineração</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
       <span>Reciclagem</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
       <span>Compostagem</span>
     </label>
-  </div>
+  </form>
 
-  <a href="{% url "question_2" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
 {% endblock question %}
-
-

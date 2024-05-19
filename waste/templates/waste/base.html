@@ -2,7 +2,7 @@
 
 {% load static %}
 
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -25,13 +25,16 @@
 </head>
 
 <body>
-  <div class="initial-game-screen">
-    <div class="game-logo">
-      <p>Resíduos</p>
-      <p>Quizz</p>
+  <div class="main-content">
+    <div class="initial-game-screen">
+      <div class="game-logo">
+        <p>Resíduos</p>
+        <p>Quizz</p>
+      </div>
+      {% block content %}{% endblock content %}
     </div>
-    {% block content %}{% endblock content %}
   </div>
 </body>
 
+{% block script %}{% endblock script %}
 </html>

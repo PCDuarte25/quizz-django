@@ -2,7 +2,7 @@
 
 {% load static %}
 
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -25,15 +25,25 @@
 </head>
 
 <body>
-  <div class="questions-background">
-    <div class="questions-container">
-      {% include "waste/progress_bar.html" %}
+  <div class="main-content">
+    <div class="questions-background">
+      <div class="questions-container">
+        {% include "waste/progress_bar.html" %}
 
-      <div class="nes-container is-rounded">
-        {% block question %}{% endblock question %}
+        <div class="nes-container is-rounded">
+          {% block question %}{% endblock question %}
+        </div>
       </div>
+
+      {% include "waste/gir.html" %}
+      {% include "waste/penalize_cheater.html" %}
     </div>
   </div>
 </body>
 
+{% if gir is not None or is_cheating %}
+  {% block script %}
+    {% include "waste/show_modal.html" %}
+  {% endblock script %}
+{% endif %}
 </html>

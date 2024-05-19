@@ -3,22 +3,23 @@
 {% block question %}
   <p>Qual das seguintes opções é considerada uma prática de redução de resíduos sólidos?</p>
 
-  <div class="questions">
+  <form id="form" class="questions" method="post" action="{% url "question_4" person.id %}">
+    {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1">
       <span>Descartar todos os materiais não utilizados</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
       <span>Comprar produtos a granel em vez de embalagens individuais</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
       <span>Ignorar a reciclagem e disposição adequada dos resíduos</span>
     </label>
-  </div>
+  </form>
 
-  <a href="{% url "question_5" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
 {% endblock question %}
 
 

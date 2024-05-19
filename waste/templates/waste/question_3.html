@@ -3,22 +3,23 @@
 {% block question %}
   <p>Qual é a alternativa mais sustentável para o descarte de resíduos eletrônicos?</p>
 
-  <div class="questions">
+  <form id="form" class="questions" method="post" action="{% url "question_3" person.id %}">
+    {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1">
       <span>Jogá-los no lixo comum</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
       <span>Doá-los para instituições de caridade</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
       <span>Reciclá-los em instalações apropriadas</span>
     </label>
-  </div>
+  </form>
 
-  <a href="{% url "question_4" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
 {% endblock question %}
 
 

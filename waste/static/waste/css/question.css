@@ -1,3 +1,8 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
 .questions-background {
   display: flex;
   background-image: url('../sprites/background8bit864x864.png');

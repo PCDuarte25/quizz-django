@@ -1,0 +1,19 @@
+{% if gir is not None %}
+  {% if gir == '1' %}
+    <dialog class="nes-dialog" id="dialog-default">
+      <p class="title">Acertou !</p>
+      <p>Parabéns você ganhou 20 pontos</p>
+      <menu class="dialog-menu">
+        <a class="nes-btn is-primary" href="{{ next_page_url }}">Ok</a>
+      </menu>
+    </dialog>
+  {% else %}
+    <dialog class="nes-dialog" id="dialog-default">
+      <p class="title">Você errou! A resposta certa era</p>
+      <p>{{ correct_answer }}</p>
+      <menu class="dialog-menu">
+        <a class="nes-btn is-primary" href="{{ next_page_url }}">Ok</a>
+      </menu>
+    </dialog>
+  {% endif %}
+{% endif %}

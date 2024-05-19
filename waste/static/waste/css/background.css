@@ -1,3 +1,8 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
 .initial-game-screen {
   display: flex;
   background-image: url('../sprites/background8bit864x864.png');
@@ -18,4 +23,3 @@
   position: absolute;
   top: 160px;
 }
-

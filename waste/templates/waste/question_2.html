@@ -3,22 +3,23 @@
 {% block question %}
   <p>Qual é o principal objetivo da coleta seletiva de resíduos sólidos?</p>
 
-  <div class="questions">
+  <form id="form" class="questions" method="post" action="{% url "question_2" person.id %}">
+    {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1">
       <span>Misturar todos os tipos de resíduos juntos para facilitar a disposição</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
       <span>Separar materiais recicláveis dos não recicláveis</span>
     </label>
     <label>
-      <input class="nes-radio" type="radio" name="answer">
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
       <span>Descartar todos os resíduos diretamente em aterros sanitários</span>
     </label>
-  </div>
+  </form>
 
-  <a href="{% url "question_3" %}"><button type="button" class="nes-btn is-success">Próxima</button></a>
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
 {% endblock question %}
 
 

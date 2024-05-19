@@ -1,4 +1,8 @@
+{% load l10n %}
+
 <div class="progress-bar">
   <p class="progress-title">Progresso {{ current_question }}/5</p>
-  <progress class="nes-progress {{ progress_bar_class }}" value="{{ progress_pct }}" max="100">oi</progress>
+  {% localize off %}
+    <progress class="nes-progress {{ progress_bar_class }}" value="{{ progress_pct }}" max="100"></progress>
+  {% endlocalize %}
 </div>
