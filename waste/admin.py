@@ -8,11 +8,15 @@ class PersonAdmin(admin.ModelAdmin):
         'name',
         'score',
         'current_question',
+        'quizz_start_time',
+        'quizz_end_time',
     ]
     list_display = [
         'name',
         'score',
         'current_question',
+        'quizz_start_time',
+        'quizz_end_time',
     ]
 
 admin.site.register(Person, PersonAdmin)

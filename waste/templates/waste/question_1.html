@@ -1,12 +1,12 @@
 {% extends "waste/question_base.html" %}
 
 {% block question %}
-  <p>Qual é a principal forma de gerenciamento de resíduos sólidos urbanos?</p>
+  <h4>Qual é a principal forma de gerenciamento de resíduos sólidos urbanos?</h4>
 
   <form id="form" class="questions" method="post" action="{% url "question_1" person.id %}">
     {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer" value="ans-1">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
       <span>Incineração</span>
     </label>
     <label>

@@ -1,7 +1,12 @@
 {% if is_cheating %}
   <dialog class="nes-dialog" id="dialog-default">
-    <p class="title">Ladrão !</p>
-    <p>Por isso você perdeu 20 pontos :D</p>
+    <h3 class="title">Ladrão!</h3>
+
+    <div class="cheater">
+      <span>Por isso você perdeu 20 pontos</span>
+      <i class="nes-icon is-medium like" id="icon-like"></i>
+    </div>
+
     <menu class="dialog-menu">
       <a class="nes-btn is-error" href="{{ person_current_question_url }}">Sou um ladrão</a>
     </menu>

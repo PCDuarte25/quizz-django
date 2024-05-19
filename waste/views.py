@@ -1,6 +1,9 @@
+from django.contrib import messages
+from django.db.models import F, ExpressionWrapper, DurationField
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils import timezone
 from .forms import PersonForm
 from .models import Person
 
@@ -28,14 +31,19 @@ def question_1(request: HttpRequest, person_id: int) -> HttpResponse:
     context = build_context(question_number, person)
 
     if request.method == 'POST':
-        if person.current_question > question_number:
-            penalize_cheater(person, context)
-        elif person.current_question == question_number:
-            # gir = Got It Right.
-            gir = request.POST['answer'] == 'ans-2'
-            add_person_score(person, gir)
+        if 'answer' in request.POST:
+            if person.current_question > question_number:
+                penalize_cheater(person, context)
+            elif person.current_question == question_number:
+                # gir = Got It Right.
+                gir = request.POST['answer'] == 'ans-2'
+                add_person_score(person, gir)
+                person.save()
 
-            return redirect(reverse('question_1', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+                return redirect(reverse('question_1', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+        else:
+            messages.error(request, 'Você precisa selecionar pelo menos uma opção')
+
     else:
         gir = request.GET.get('gir')
         add_after_answer_context('Reciclagem', context, gir)
@@ -52,14 +60,19 @@ def question_2(request: HttpRequest, person_id: int) -> HttpResponse:
        return redirect(f"question_{person.current_question}", person_id=person.id)
 
     if request.method == 'POST':
-        if person.current_question > question_number:
-            penalize_cheater(person, context)
-        elif person.current_question == question_number:
-            # gir = Got It Right.
-            gir = request.POST['answer'] == 'ans-2'
-            add_person_score(person, gir)
+        if 'answer' in request.POST:
+            if person.current_question > question_number:
+                penalize_cheater(person, context)
+            elif person.current_question == question_number:
+                # gir = Got It Right.
+                gir = request.POST['answer'] == 'ans-2'
+                add_person_score(person, gir)
+                person.save()
 
-            return redirect(reverse('question_2', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+                return redirect(reverse('question_2', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+        else:
+            messages.error(request, 'Você precisa selecionar pelo menos uma opção')
+
     else:
         gir = request.GET.get('gir')
         add_after_answer_context('Separar materiais recicláveis dos não recicláveis', context, gir)
@@ -76,14 +89,19 @@ def question_3(request: HttpRequest, person_id: int) -> HttpResponse:
        return redirect(f"question_{person.current_question}", person_id=person.id)
 
     if request.method == 'POST':
-        if person.current_question > question_number:
-            penalize_cheater(person, context)
-        elif person.current_question == question_number:
-            # gir = Got It Right.
-            gir = request.POST['answer'] == 'ans-3'
-            add_person_score(person, gir)
+        if 'answer' in request.POST:
+            if person.current_question > question_number:
+                penalize_cheater(person, context)
+            elif person.current_question == question_number:
+                # gir = Got It Right.
+                gir = request.POST['answer'] == 'ans-3'
+                add_person_score(person, gir)
+                person.save()
 
-            return redirect(reverse('question_3', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+                return redirect(reverse('question_3', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+        else:
+            messages.error(request, 'Você precisa selecionar pelo menos uma opção')
+
     else:
         gir = request.GET.get('gir')
         add_after_answer_context('Reciclá-los em instalações apropriadas', context, gir)
@@ -100,14 +118,20 @@ def question_4(request: HttpRequest, person_id: int) -> HttpResponse:
        return redirect(f"question_{person.current_question}", person_id=person.id)
 
     if request.method == 'POST':
-        if person.current_question > question_number:
-            penalize_cheater(person, context)
-        elif person.current_question == question_number:
-            # gir = Got It Right.
-            gir = request.POST['answer'] == 'ans-2'
-            add_person_score(person, gir)
+        if 'answer' in request.POST:
+            if person.current_question > question_number:
+                penalize_cheater(person, context)
+            elif person.current_question == question_number:
+                # gir = Got It Right.
+                gir = request.POST['answer'] == 'ans-2'
+                add_person_score(person, gir)
+                person.quizz_end_time = timezone.now()
+                person.save()
 
-            return redirect(reverse('question_4', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+                return redirect(reverse('question_4', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
+        else:
+            messages.error(request, 'Você precisa selecionar pelo menos uma opção')
+
     else:
         gir = request.GET.get('gir')
         add_after_answer_context('Comprar produtos a granel em vez de embalagens individuais', context, gir)
@@ -126,6 +150,21 @@ def question_5(request: HttpRequest, person_id: int) -> HttpResponse:
         'person': person,
     })
 
+
+def ranking(request: HttpRequest, person_id: int|None = None) -> HttpResponse:
+    top_people = Person.objects.filter(quizz_end_time__isnull=False).annotate(
+        finished_quizz_time=ExpressionWrapper(F('quizz_end_time') - F('quizz_start_time'), output_field=DurationField())
+    ).order_by('-score', 'finished_quizz_time')
+
+    context = {
+        'range': range(10),
+        'top_people': top_people[0:10],
+    }
+
+    if person_id is not None:
+        context['current_person'] = get_object_or_404(Person, pk=person_id)
+
+    return render(request, 'waste/ranking.html', context)
 
 def progress_bar_class(question_number):
     if question_number == 5:
@@ -154,7 +193,6 @@ def add_person_score(person, gir):
     person.current_question += 1
     if gir:
         person.score += 20
-    person.save()
 
 
 def add_after_answer_context(answer, context, gir):

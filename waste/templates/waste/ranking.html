@@ -1,0 +1,35 @@
+{% extends "waste/base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block references %}
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/ranking.css" %}" />
+{% endblock references %}
+
+{% block content %}
+  <div class="ranking-content">
+    <div class="nes-table-responsive">
+      <table class="nes-table is-bordered is-centered is-dark">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Pontos</th>
+            <th>Tempo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for person in top_people %}
+            <tr {% if person == current_person %}class="person-ranking"{% endif %}>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ person.name }}{% if forloop.counter == 1 %} <i class="nes-icon trophy is-small"></i>{% endif %} </td>
+              <td>{{ person.score }}</td>
+              <td>{{ person.get_finished_quizz_time|format_duration }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}

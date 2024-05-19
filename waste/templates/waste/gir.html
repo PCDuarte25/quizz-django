@@ -1,18 +1,24 @@
 {% if gir is not None %}
   {% if gir == '1' %}
     <dialog class="nes-dialog" id="dialog-default">
-      <p class="title">Acertou !</p>
-      <p>Parabéns você ganhou 20 pontos</p>
+      <h3 class="title">Acertou!</h3>
+      <div class="points">
+        <span>Você ganhou 20 pontos</span>
+        <i class="nes-icon coin is-medium"></i>
+      </div>
       <menu class="dialog-menu">
-        <a class="nes-btn is-primary" href="{{ next_page_url }}">Ok</a>
+        <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
       </menu>
     </dialog>
   {% else %}
     <dialog class="nes-dialog" id="dialog-default">
-      <p class="title">Você errou! A resposta certa era</p>
-      <p>{{ correct_answer }}</p>
+      <h3 class="title">Errou!</h3>
+      <div class="correct-answer-container">
+        <span class="title">A resposta correta era:</span>
+        <span class="nes-text is-error">{{ correct_answer }}</span>
+      </div>
       <menu class="dialog-menu">
-        <a class="nes-btn is-primary" href="{{ next_page_url }}">Ok</a>
+        <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
       </menu>
     </dialog>
   {% endif %}

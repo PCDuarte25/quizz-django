@@ -24,11 +24,11 @@
 
   {% if form.errors %}
     <dialog class="nes-dialog" id="dialog-default">
-      <form method="dialog">
-        <p class="title">Erro</p>
-        <p>{{ form.name.errors.as_text }}</p>
+      <form method="dialog" class="error-container">
+        <h3 class="title">Erro</h3>
+        <span>{{ form.name.errors.as_text }}</span>
         <menu class="dialog-menu">
-          <button class="nes-btn is-primary">Ok</button>
+          <button class="nes-btn is-primary">Tudo bem</button>
         </menu>
       </form>
     </dialog>

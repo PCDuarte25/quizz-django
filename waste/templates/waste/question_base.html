@@ -37,11 +37,25 @@
 
       {% include "waste/gir.html" %}
       {% include "waste/penalize_cheater.html" %}
+
+      {% if messages %}
+        <dialog class="nes-dialog" id="dialog-default">
+          <form method="dialog" class="error-container">
+            <h3 class="title">Erro</h3>
+            {% for message in messages %}
+              <span>{{ message }}</span>
+            {% endfor %}
+            <menu class="dialog-menu">
+              <button class="nes-btn is-primary">Tudo bem</button>
+            </menu>
+          </form>
+        </dialog>
+      {% endif %}
     </div>
   </div>
 </body>
 
-{% if gir is not None or is_cheating %}
+{% if gir is not None or is_cheating or messages %}
   {% block script %}
     {% include "waste/show_modal.html" %}
   {% endblock script %}

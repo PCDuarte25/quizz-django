@@ -1,12 +1,12 @@
 {% extends "waste/question_base.html" %}
 
 {% block question %}
-  <p>Qual das seguintes opções é considerada uma prática de redução de resíduos sólidos?</p>
+  <h4>Qual das seguintes opções é considerada uma prática de redução de resíduos sólidos?</h4>
 
   <form id="form" class="questions" method="post" action="{% url "question_4" person.id %}">
     {% csrf_token %}
     <label>
-      <input class="nes-radio" type="radio" name="answer" value="ans-1">
+      <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
       <span>Descartar todos os materiais não utilizados</span>
     </label>
     <label>

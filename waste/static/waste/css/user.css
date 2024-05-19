@@ -30,3 +30,19 @@
 .back-button {
   margin-bottom: 15px;
 }
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.nes-dialog h3 {
+  margin: 0;
+}
+
+menu {
+  margin: 0;
+  padding: 0;
+}
