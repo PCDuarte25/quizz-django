@@ -125,7 +125,6 @@ def question_4(request: HttpRequest, person_id: int) -> HttpResponse:
                 # gir = Got It Right.
                 gir = request.POST['answer'] == 'ans-2'
                 add_person_score(person, gir)
-                person.quizz_end_time = timezone.now()
                 person.save()
 
                 return redirect(reverse('question_4', kwargs={'person_id': person.id}) + f"?gir={1 if gir else 0}")
@@ -140,15 +139,45 @@ def question_4(request: HttpRequest, person_id: int) -> HttpResponse:
 
 
 def question_5(request: HttpRequest, person_id: int) -> HttpResponse:
-    current_question = 5
+    question_number = 5
     person = get_object_or_404(Person, pk=person_id)
+    context = build_context(question_number, person)
 
-    return render(request, 'waste/question_5.html', {
-        'current_question': current_question,
-        'progress_pct': (current_question / 5) * 100,
-        'progress_bar_class': progress_bar_class(current_question),
-        'person': person,
-    })
+    if person.current_question < question_number:
+       return redirect(f"question_{person.current_question}", person_id=person.id)
+
+    if request.method == 'POST':
+        print(request.POST)
+        if person.current_question == question_number:
+            battery_bin_item = request.POST.get('battery-bin')
+            metal_bin_item = request.POST.get('metal-bin')
+            organic_bin_item = request.POST.get('organic-bin')
+
+            if (
+                battery_bin_item
+                and metal_bin_item
+                and organic_bin_item
+            ):
+                is_correct = (
+                    battery_bin_item == 'battery'
+                    and metal_bin_item == 'soda'
+                    and organic_bin_item == 'apple'
+                )
+
+                if is_correct:
+                    person.score += 20
+
+                person.quizz_end_time = timezone.now()
+                person.save()
+
+                return redirect(reverse('question_5', kwargs={'person_id': person.id}) + f"?gir={1 if is_correct else 0}")
+            else:
+                messages.error(request, 'Você precisa colocar todos os resíduos nas lixeiras')
+    else:
+        gir = request.GET.get('gir')
+        add_after_answer_context('A lata é na lixeira amarela, a maçã é na lixeira marrom e a bateria é na lixeira laranja', context, gir)
+
+    return render(request, 'waste/question_5.html', context)
 
 
 def ranking(request: HttpRequest, person_id: int|None = None) -> HttpResponse:
@@ -174,13 +203,19 @@ def progress_bar_class(question_number):
 
 
 def build_context(question_number, person):
-    return {
+    context = {
         'current_question': question_number,
         'progress_pct': (question_number / 5) * 100,
         'progress_bar_class': progress_bar_class(question_number),
         'person': person,
-        'next_page_url': reverse(f"question_{question_number + 1}", kwargs={'person_id': person.id})
     }
+
+    if question_number == 5:
+        context['next_page_url'] = reverse(f"person_ranking", kwargs={'person_id': person.id})
+    else:
+        context['next_page_url'] = reverse(f"question_{question_number + 1}", kwargs={'person_id': person.id})
+
+    return context
 
 def penalize_cheater(person, context):
     context['is_cheating'] = True

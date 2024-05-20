@@ -7,7 +7,11 @@
         <i class="nes-icon coin is-medium"></i>
       </div>
       <menu class="dialog-menu">
-        <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% if current_question == 5 %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Ranking</a>
+        {% else %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% endif %}
       </menu>
     </dialog>
   {% else %}
@@ -18,7 +22,11 @@
         <span class="nes-text is-error">{{ correct_answer }}</span>
       </div>
       <menu class="dialog-menu">
-        <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% if current_question == 5 %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Ranking</a>
+        {% else %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% endif %}
       </menu>
     </dialog>
   {% endif %}

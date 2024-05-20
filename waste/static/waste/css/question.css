@@ -196,3 +196,11 @@ h4 {
 dialog:not([open]) {
   display: none;
 }
+
+.empty-bin {
+  opacity: 50%;
+}
+
+.thrown-item {
+  opacity: 50%;
+}

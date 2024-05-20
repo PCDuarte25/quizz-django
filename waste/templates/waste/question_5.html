@@ -1,24 +1,36 @@
 {% extends "waste/question_base.html" %}
 
+{% load static %}
+
+{% block references %}
+  <script src="{% static "waste/js/question_5.js" %}" defer></script>
+{% endblock references %}
+
 {% block question %}
   <h4>Arraste o tipo de resíduo sólido para o destino correto de descarte</h4>
 
   <div class="questions">
     <div class="questions-drag">
       <div class="options">
-        <div class="battery"></div>
-        <div class="apple"></div>
-        <div class="soda"></div>
+        <div draggable="true" id="battery" class="battery"></div>
+        <div draggable="true" id="apple" class="apple"></div>
+        <div draggable="true" id="soda" class="soda"></div>
       </div>
       <div class="choices">
-        <div class="battery-bin"></div>
-        <div class="metal-bin"></div>
-        <div class="organic-bin"></div>
+        <div id="battery-bin" class="battery-bin empty-bin"></div>
+        <div id="metal-bin" class="metal-bin empty-bin"></div>
+        <div id="organic-bin" class="organic-bin empty-bin"></div>
       </div>
     </div>
   </div>
 
-  <a href="{% url "dashboard" %}"><button type="button" class="nes-btn is-success">Finalizar</button></a>
+  <form id="form" method="post" action="{% url "question_5" person.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="battery-bin" value="" id="battery-bin-input">
+    <input type="hidden" name="metal-bin" value="" id="metal-bin-input">
+    <input type="hidden" name="organic-bin" value="" id="organic-bin-input">
+    <button type="submit" class="nes-btn is-success" form="form">Finalizar</button>
+  </form>
 {% endblock question %}
 
 
