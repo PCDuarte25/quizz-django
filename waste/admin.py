@@ -12,6 +12,7 @@ class PersonAdmin(admin.ModelAdmin):
         'quizz_end_time',
     ]
     list_display = [
+        'pk',
         'name',
         'score',
         'current_question',

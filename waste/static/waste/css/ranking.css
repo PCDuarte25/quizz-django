@@ -5,3 +5,19 @@
 .person-ranking {
   background-color: #2eaea5d9;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.first-place {
+  background-color: rgb(213, 185, 31);
+}
+
+.second-place {
+  background-color: #a7aeaed9;
+}
+
+.third-place {
+  background-color: #9d7527;
+}

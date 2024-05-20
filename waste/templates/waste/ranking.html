@@ -21,11 +21,17 @@
         </thead>
         <tbody>
           {% for person in top_people %}
-            <tr {% if person == current_person %}class="person-ranking"{% endif %}>
-              <td>{{ forloop.counter }}</td>
+            <tr {% if person == current_person %}class="{% include "waste/position_class.html" with position=current_person_position %}"{% endif %} >
+              <td class="text-center">
+                {% if person == current_person %}
+                  {{ current_person_position }}
+                {% else %}
+                  {{ forloop.counter }}
+                {% endif %}
+              </td>
               <td>{{ person.name }}{% if forloop.counter == 1 %} <i class="nes-icon trophy is-small"></i>{% endif %} </td>
-              <td>{{ person.score }}</td>
-              <td>{{ person.get_finished_quizz_time|format_duration }}</td>
+              <td class="text-center">{{ person.score }}</td>
+              <td class="text-center">{{ person.get_finished_quizz_time|format_duration }}</td>
             </tr>
           {% endfor %}
         </tbody>

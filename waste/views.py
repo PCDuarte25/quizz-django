@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.db.models import F, ExpressionWrapper, DurationField
+from django.db.models import F, ExpressionWrapper, DurationField, Q
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -181,17 +181,31 @@ def question_5(request: HttpRequest, person_id: int) -> HttpResponse:
 
 
 def ranking(request: HttpRequest, person_id: int|None = None) -> HttpResponse:
-    top_people = Person.objects.filter(quizz_end_time__isnull=False).annotate(
+    qs = Person.objects.filter(quizz_end_time__isnull=False).annotate(
         finished_quizz_time=ExpressionWrapper(F('quizz_end_time') - F('quizz_start_time'), output_field=DurationField())
-    ).order_by('-score', 'finished_quizz_time')
+    )
 
-    context = {
-        'range': range(10),
-        'top_people': top_people[0:10],
-    }
+    top_people_qs = qs.order_by('-score', 'finished_quizz_time')
+
+    context = {'range': range(10)}
+
+    top_people = list(top_people_qs[0:10])
 
     if person_id is not None:
-        context['current_person'] = get_object_or_404(Person, pk=person_id)
+        person = get_object_or_404(Person, pk=person_id)
+        context['current_person'] = person
+
+        position = qs.filter(
+            Q(score__gt=person.score)
+            | (Q(score=person.score) & Q(finished_quizz_time__lt=person.get_finished_quizz_time))
+        ).count() + 1
+
+        if position > 10:
+            top_people[len(top_people) - 1] = person
+
+        context['current_person_position'] = position
+
+    context['top_people'] = top_people
 
     return render(request, 'waste/ranking.html', context)
 
