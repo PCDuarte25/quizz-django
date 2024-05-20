@@ -1,21 +1,25 @@
 {% extends "waste/question_base.html" %}
 
 {% block question %}
-  <h4>Qual é a alternativa mais sustentável para o descarte de resíduos eletrônicos?</h4>
+  <h4>Qual é o papel dos catadores de materiais recicláveis de acordo com a PNRS?</h4>
 
   <form id="form" class="questions" method="post" action="{% url "question_3" person.id %}">
     {% csrf_token %}
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
-      <span>Jogá-los no lixo comum</span>
+      <span>Coletar resíduos apenas para benefício próprio.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-2">
-      <span>Doá-los para instituições de caridade</span>
+      <span>Contribuir para a inclusão social e a redução da quantidade de resíduos enviados para aterros sanitários.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-3">
-      <span>Reciclá-los em instalações apropriadas</span>
+      <span>Competir com as empresas de coleta de lixo.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-4">
+      <span>Ignorar as diretrizes estabelecidas pela legislação.</span>
     </label>
   </form>
 

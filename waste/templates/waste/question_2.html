@@ -1,21 +1,25 @@
 {% extends "waste/question_base.html" %}
 
 {% block question %}
-  <h4>Qual é o principal objetivo da coleta seletiva de resíduos sólidos?</h4>
+  <h4>Como a população pode contribuir para a gestão adequada de resíduos sólidos, incluindo resíduos eletroeletrônicos?</h4>
 
   <form id="form" class="questions" method="post" action="{% url "question_2" person.id %}">
     {% csrf_token %}
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
-      <span>Misturar todos os tipos de resíduos juntos para facilitar a disposição</span>
+      <span>Descartando-os no lixo comum.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-2">
-      <span>Separar materiais recicláveis dos não recicláveis</span>
+      <span>Deixando-os acumulados em casa.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-3">
-      <span>Descartar todos os resíduos diretamente em aterros sanitários</span>
+      <span>Vendendo-os para ferro-velhos.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-4">
+      <span>Entregando-os em pontos de coleta específicos ou participando de campanhas de reciclagem.</span>
     </label>
   </form>
 

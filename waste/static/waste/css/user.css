@@ -13,9 +13,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 408px;
 }
 
 .nes-btn {
+  width: 140px;
+}
+
+.nes-btn.is-success {
   width: 98%;
 }
 

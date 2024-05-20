@@ -36,7 +36,7 @@ def question_1(request: HttpRequest, person_id: int) -> HttpResponse:
                 penalize_cheater(person, context)
             elif person.current_question == question_number:
                 # gir = Got It Right.
-                gir = request.POST['answer'] == 'ans-2'
+                gir = request.POST['answer'] == 'ans-3'
                 add_person_score(person, gir)
                 person.save()
 
@@ -46,7 +46,7 @@ def question_1(request: HttpRequest, person_id: int) -> HttpResponse:
 
     else:
         gir = request.GET.get('gir')
-        add_after_answer_context('Reciclagem', context, gir)
+        add_after_answer_context('Locais designados para a entrega voluntária de produtos eletrônicos descartados pela população.', context, gir)
 
     return render(request, 'waste/question_1.html', context)
 
@@ -65,7 +65,7 @@ def question_2(request: HttpRequest, person_id: int) -> HttpResponse:
                 penalize_cheater(person, context)
             elif person.current_question == question_number:
                 # gir = Got It Right.
-                gir = request.POST['answer'] == 'ans-2'
+                gir = request.POST['answer'] == 'ans-4'
                 add_person_score(person, gir)
                 person.save()
 
@@ -75,7 +75,7 @@ def question_2(request: HttpRequest, person_id: int) -> HttpResponse:
 
     else:
         gir = request.GET.get('gir')
-        add_after_answer_context('Separar materiais recicláveis dos não recicláveis', context, gir)
+        add_after_answer_context('Entregando-os em pontos de coleta específicos ou participando de campanhas de reciclagem.', context, gir)
 
     return render(request, 'waste/question_2.html', context)
 
@@ -94,7 +94,7 @@ def question_3(request: HttpRequest, person_id: int) -> HttpResponse:
                 penalize_cheater(person, context)
             elif person.current_question == question_number:
                 # gir = Got It Right.
-                gir = request.POST['answer'] == 'ans-3'
+                gir = request.POST['answer'] == 'ans-2'
                 add_person_score(person, gir)
                 person.save()
 
@@ -104,7 +104,7 @@ def question_3(request: HttpRequest, person_id: int) -> HttpResponse:
 
     else:
         gir = request.GET.get('gir')
-        add_after_answer_context('Reciclá-los em instalações apropriadas', context, gir)
+        add_after_answer_context('Contribuir para a inclusão social e a redução da quantidade de resíduos enviados para aterros sanitários.', context, gir)
 
     return render(request, 'waste/question_3.html', context)
 
@@ -123,7 +123,7 @@ def question_4(request: HttpRequest, person_id: int) -> HttpResponse:
                 penalize_cheater(person, context)
             elif person.current_question == question_number:
                 # gir = Got It Right.
-                gir = request.POST['answer'] == 'ans-2'
+                gir = request.POST['answer'] == 'ans-1'
                 add_person_score(person, gir)
                 person.save()
 
@@ -133,7 +133,7 @@ def question_4(request: HttpRequest, person_id: int) -> HttpResponse:
 
     else:
         gir = request.GET.get('gir')
-        add_after_answer_context('Comprar produtos a granel em vez de embalagens individuais', context, gir)
+        add_after_answer_context('Incentivar a formalização e a organização dos catadores em cooperativas e associações.', context, gir)
 
     return render(request, 'waste/question_4.html', context)
 
@@ -147,7 +147,6 @@ def question_5(request: HttpRequest, person_id: int) -> HttpResponse:
        return redirect(f"question_{person.current_question}", person_id=person.id)
 
     if request.method == 'POST':
-        print(request.POST)
         if person.current_question == question_number:
             battery_bin_item = request.POST.get('battery-bin')
             metal_bin_item = request.POST.get('metal-bin')

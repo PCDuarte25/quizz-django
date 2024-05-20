@@ -34,14 +34,6 @@ const bins = [
 let draggedItem = null;
 
 form.addEventListener('submit', (e) => {
-  // for (const bin of bins) {
-  //   if (isBinEmpty(bin)) {
-  //     e.preventDefault()
-  //     alert('safado');
-  //     return;
-  //   }
-  // }
-
   batteryBinInput.value = batteryBin.dataset.item || null;
   metalBinInput.value = metalBin.dataset.item || null;
   organicBinInput.value = organicBin.dataset.item || null;
@@ -49,7 +41,6 @@ form.addEventListener('submit', (e) => {
 
 for (const item of items) {
   item.addEventListener('dragstart', (e) => {
-    // e.dataTransfer.dropEffect = 'link';
     draggedItem = e.target;
   });
 }

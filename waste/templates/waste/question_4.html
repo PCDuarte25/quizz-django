@@ -1,21 +1,25 @@
 {% extends "waste/question_base.html" %}
 
 {% block question %}
-  <h4>Qual das seguintes opções é considerada uma prática de redução de resíduos sólidos?</h4>
+  <h4>Quais são os objetivos da PNRS em relação à inclusão social e econômica dos catadores de materiais recicláveis?</h4>
 
   <form id="form" class="questions" method="post" action="{% url "question_4" person.id %}">
     {% csrf_token %}
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
-      <span>Descartar todos os materiais não utilizados</span>
+      <span>Incentivar a formalização e a organização dos catadores em cooperativas e associações.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-2">
-      <span>Comprar produtos a granel em vez de embalagens individuais</span>
+      <span>Valorização dos catadores como mão de obra barata.</span>
     </label>
     <label>
       <input class="nes-radio" type="radio" name="answer" value="ans-3">
-      <span>Ignorar a reciclagem e disposição adequada dos resíduos</span>
+      <span>Exclusão dos catadores do sistema de gestão de resíduos.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
+      <span>Ignorar o papel dos catadores na reciclagem de materiais.</span>
     </label>
   </form>
 
